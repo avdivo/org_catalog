@@ -2,6 +2,7 @@ from pydantic import BaseModel, field_validator
 from typing import List, Optional
 from shapely.geometry import Point
 
+
 # Схема для отображения данных о здании
 class BuildingBase(BaseModel):
     id: int
@@ -11,14 +12,6 @@ class BuildingBase(BaseModel):
     class Config:
         from_attributes = True
         arbitrary_types_allowed = True
-        json_schema_extra = {
-            "example": {
-                "id": 1,
-                "address": "ул. Пушкина, д. 1",
-                "location": "POINT(37.6176 55.7558)",
-                "location_text": "Широта: 55.7558, Долгота: 37.6176"
-            }
-        }
 
     # Валидатор для поля location
     @field_validator('location')
@@ -38,12 +31,6 @@ class ActivityBase(BaseModel):
 
     class Config:
         from_attributes = True
-        json_schema_extra = {
-            "example": {
-                "id": 1,
-                "name": "Производственная деятельность"
-            }
-        }
 
 
 # Схема для отображения данных о телефонном номере
@@ -53,12 +40,6 @@ class PhoneNumberBase(BaseModel):
 
     class Config:
         from_attributes = True
-        json_schema_extra = {
-            "example": {
-                "id": 1,
-                "number": "+7 123 456 78 90"
-            }
-        }
 
 
 # Схема для отображения организации
@@ -71,26 +52,3 @@ class OrganizationBase(BaseModel):
 
     class Config:
         from_attributes = True
-        # json_schema_extra1 = {
-        #     "example": {
-        #         "id": 1,
-        #         "name": "ООО 'Пример'",
-        #         "building": {
-        #             "id": 1,
-        #             "address": "ул. Пушкина, д. 1",
-        #             "location": "POINT(37.6176 55.7558)"
-        #         },
-        #         "activities": [
-        #             {
-        #                 "id": 1,
-        #                 "name": "Производственная деятельность"
-        #             }
-        #         ],
-        #         "phone_numbers": [
-        #             {
-        #                 "id": 1,
-        #                 "number": "+7 123 456 78 90"
-        #             }
-        #         ]
-        #     }
-        # }

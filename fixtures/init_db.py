@@ -9,7 +9,6 @@ from app.models.models import Activity
 
 # Читаем JSON-данные
 DATA_FILE = Path(__file__).parent / "data" / "activities.json"
-print(DATA_FILE)
 with open(DATA_FILE, encoding="utf-8") as f:
     DATA = json.load(f)
 

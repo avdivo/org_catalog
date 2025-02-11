@@ -8,6 +8,8 @@ router = APIRouter(prefix="/organizations", tags=["Organizations"])
 @router.get("/{organization_id}", response_model=OrganizationBase)
 async def get_organization(organization_id: int):
     """Получить информацию об организации по её ID"""
+    print(organization_id, '-----------')
+    # return await get_organization(organization_id)
     pass
 
 

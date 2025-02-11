@@ -1,0 +1,76 @@
+[
+  {
+    "name": "Мясной Двор",
+    "building": {
+      "address": "ул. Тверская, д. 10, Москва",
+      "location": "POINT(37.605 55.757)"
+    },
+    "activities": [
+      { "name": "Мясная продукция" }
+    ],
+    "phone_numbers": [
+      { "number": "+7 495 123-45-67" },
+      { "number": "+7 495 234-56-78" }
+    ]
+  },
+  {
+    "name": "АвтоМир",
+    "building": {
+      "address": "пр. Ленинградский, д. 15, Москва",
+      "location": "POINT(37.530 55.819)"
+    },
+    "activities": [
+      { "name": "Грузовые" },
+      { "name": "Легковые" },
+      { "name": "Электрические" }
+    ],
+    "phone_numbers": [
+      { "number": "+7 495 345-67-89" }
+    ]
+  },
+  {
+    "name": "ГаджетПарк",
+    "building": {
+      "address": "ул. Арбат, д. 25, Москва",
+      "location": "POINT(37.593 55.751)"
+    },
+    "activities": [
+      { "name": "iPhone" },
+      { "name": "Гаджеты" },
+      { "name": "Компьютеры" }
+    ],
+    "phone_numbers": [
+      { "number": "+7 495 456-78-90" },
+      { "number": "+7 495 567-89-01" }
+    ]
+  },
+  {
+    "name": "СтильМода",
+    "building": {
+      "address": "ул. Новый Арбат, д. 5, Москва",
+      "location": "POINT(37.589 55.753)"
+    },
+    "activities": [
+      { "name": "Одежда" }
+    ],
+    "phone_numbers": [
+      { "number": "+7 495 678-90-12" }
+    ]
+  },
+  {
+    "name": "СпортЛидер",
+    "building": {
+      "address": "ул. Вавилова, д. 20, Москва",
+      "location": "POINT(37.570 55.703)"
+    },
+    "activities": [
+      { "name": "Футбол" },
+      { "name": "Бег" }
+    ],
+    "phone_numbers": [
+      { "number": "+7 495 789-01-23" },
+      { "number": "+7 495 890-12-34" },
+      { "number": "+7 495 901-23-45" }
+    ]
+  }
+]

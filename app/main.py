@@ -2,7 +2,7 @@ import logging
 from fastapi import FastAPI
 
 from app.core.config import Config
-from api.v1.endpoints import organizations, activity, geo, buildings
+from app.api.v1.endpoints import organizations, activity, geo, buildings
 
 logging.basicConfig(level=logging.INFO)  # Лог файл не создается, логи выводятся в консоль
 
