@@ -1,0 +1,20 @@
+from typing import List
+from fastapi import APIRouter
+from app.schemas.schemas import OrganizationBase
+
+router = APIRouter(prefix="/geo", tags=["Geolocation"])
+
+
+@router.get("/radius", response_model=List[OrganizationBase])
+async def get_organizations_in_radius(lat: float, lon: float, radius: float):
+    """Список организаций в заданном радиусе от точки"""
+    pass
+
+
+@router.get("/rectangle", response_model=List[OrganizationBase])
+async def get_organizations_in_rectangle(
+        top_left_lat: float, top_left_lon: float,
+        bottom_right_lat: float, bottom_right_lon: float
+):
+    """Список организаций в заданной прямоугольной области"""
+    pass

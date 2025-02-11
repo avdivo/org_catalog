@@ -1,0 +1,30 @@
+services:
+  db:
+    image: postgis/postgis:17-3.5
+    container_name: orgcat_db
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
+
+  app:
+    build:
+      context: .
+    container_name: orgcat
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    restart: always
+    ports:
+      - ${APP_PORTS}
+    environment:
+      DB_HOST: db
+
+volumes:
+  postgres_data:
