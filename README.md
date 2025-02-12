@@ -74,3 +74,16 @@ import geoalchemy2
     # op.drop_table('spatial_ref_sys')  
     # op.create_index('idx_building_location', 'building', ['location'], unique=False, postgresql_using='gist')  
     # op.drop_index('idx_building_location', table_name='building', postgresql_using='gist')  
+
+
+Запуск:  
+    docker compose up -d db  
+    alembic upgrade head  
+    python init_db.py  
+
+    uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+Остановить БД и очистить:  
+    docker compose up -d db
+
+

@@ -82,7 +82,7 @@ async def main():
     """ Основная логика: проверка наличия данных и их вставка. """
 
     print("Заполняем таблицу Activity...")
-    DATA_FILE = Path(__file__).parent / "data" / "activities.json"
+    DATA_FILE = Path(__file__).parent / "fixtures" / "activities.json"
     with open(DATA_FILE, encoding="utf-8") as f:
         DATA = json.load(f)
 
@@ -92,7 +92,7 @@ async def main():
 
     print("Заполняем таблицы...")
     async with async_session() as session:
-        DATA_FILE = Path(__file__).parent / "data" / "organizations.json"
+        DATA_FILE = Path(__file__).parent / "fixtures" / "organizations.json"
         org_act = await load_data_from_json(session, DATA_FILE)
         await session.commit()
         await session.close()

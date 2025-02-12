@@ -1,4 +1,6 @@
 from pydantic import BaseModel, field_validator
+from geoalchemy2.shape import to_shape
+from geoalchemy2.elements import WKBElement
 from typing import List, Optional
 from shapely.geometry import Point
 
@@ -7,22 +9,20 @@ from shapely.geometry import Point
 class BuildingBase(BaseModel):
     id: int
     address: str
-    location: str  # Тип изменим на строку, чтобы хранить координаты
+    location: list[float]  # Тип изменим на строку, чтобы хранить координаты
 
     class Config:
         from_attributes = True
         arbitrary_types_allowed = True
 
-    # Валидатор для поля location
-    @field_validator('location')
-    def convert_location(cls, value):
-        # Преобразуем объект Geometry в строку с координатами
-        if isinstance(value, Point):
-            latitude = value.y  # Широта
-            longitude = value.x  # Долгота
-            return f"Широта: {latitude}, Долгота: {longitude}"
-        return value  # Если это не Point, просто возвращаем значение как есть
 
+    @field_validator('location', mode='before')
+    def convert_location(cls, value):
+        """Конвертирует WKBElement → Point → строку с координатами"""
+        if isinstance(value, WKBElement):  # Если объект типа WKBElement
+            value = to_shape(value)  # Конвертируем в объект Point
+            value = [value.y, value.x]
+        return value
 
 # Схема для отображения данных об активности
 class ActivityBase(BaseModel):
