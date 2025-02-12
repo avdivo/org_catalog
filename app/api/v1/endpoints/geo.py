@@ -4,7 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.schemas.schemas import OrganizationBase
 from app.core.database import get_db
-from app.services.organization import get_organizations_in_radius
+from app.services.organization import get_organizations_in_radius, get_organizations_in_rectangle
 
 router = APIRouter(prefix="/geo", tags=["Geolocation"])
 
@@ -16,9 +16,10 @@ async def organizations_in_radius(lat: float, lon: float, radius: float, db: Asy
 
 
 @router.get("/rectangle", response_model=List[OrganizationBase])
-async def get_organizations_in_rectangle(
+async def organizations_in_rectangle(
         top_left_lat: float, top_left_lon: float,
-        bottom_right_lat: float, bottom_right_lon: float
+        bottom_right_lat: float, bottom_right_lon: float,
+        db: AsyncSession = Depends(get_db)
 ):
     """Список организаций в заданной прямоугольной области"""
-    pass
+    return await get_organizations_in_rectangle(db, top_left_lat, top_left_lon, bottom_right_lat, bottom_right_lon)

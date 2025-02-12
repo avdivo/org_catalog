@@ -7,7 +7,7 @@ from app.db.organizations.by_organization import get_organization_by_id_from_db,
 from app.db.activities.by_activity import get_path_by_activity_id_from_db
 from app.db.organizations.by_activity import (get_organizations_by_activity_id_from_db,
                                               get_organizations_by_activity_path_from_db)
-from app.db.organizations.by_geo import get_organizations_in_radius_from_db
+from app.db.organizations.by_geo import get_organizations_in_radius_from_db, get_organizations_in_rectangle_from_db
 
 
 async def get_organization_by_id(db: AsyncSession, organization_id: int) -> Organization or None:
@@ -40,3 +40,13 @@ async def get_organizations_by_activity_id_deep(db: AsyncSession, activity_id: i
 async def get_organizations_in_radius(db: AsyncSession, lat: float, lon: float, radius: float) -> List[Organization]:
     """Поиск организаций которые находятся в заданном круге на карте"""
     return await get_organizations_in_radius_from_db(db, lat, lon, radius)
+
+
+async def get_organizations_in_rectangle(
+        db: AsyncSession,
+        top_left_lat: float, top_left_lon: float,
+        bottom_right_lat: float, bottom_right_lon: float
+        ) -> List[Organization]:
+    """Поиск организаций которые находятся в заданном прямоугольнике"""
+    return await get_organizations_in_rectangle_from_db(db, top_left_lat, top_left_lon, bottom_right_lat,
+                                                        bottom_right_lon)
