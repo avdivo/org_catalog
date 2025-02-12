@@ -1,14 +1,18 @@
 from typing import List
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from app.schemas.schemas import OrganizationBase
+from app.core.database import get_db
+from app.services.organization import get_organizations_in_radius
 
 router = APIRouter(prefix="/geo", tags=["Geolocation"])
 
 
 @router.get("/radius", response_model=List[OrganizationBase])
-async def get_organizations_in_radius(lat: float, lon: float, radius: float):
+async def organizations_in_radius(lat: float, lon: float, radius: float, db: AsyncSession = Depends(get_db)):
     """Список организаций в заданном радиусе от точки"""
-    pass
+    return await get_organizations_in_radius(db, lat, lon, radius)
 
 
 @router.get("/rectangle", response_model=List[OrganizationBase])

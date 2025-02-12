@@ -4,11 +4,11 @@ import asyncio
 from pathlib import Path
 from sqlalchemy import select
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 from geoalchemy2 import WKTElement
+from sqlalchemy.orm import sessionmaker
 
 from app.core.database import async_session
-from app.models.models import Building, Organization, PhoneNumber, Activity, organization_activity
+from app.models.models import Building, Organization, PhoneNumber, Activity
 from app.core.config import Config
 
 

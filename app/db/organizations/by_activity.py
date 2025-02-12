@@ -1,5 +1,4 @@
 from typing import List
-from fastapi import HTTPException
 from sqlalchemy.future import select
 from sqlalchemy.orm import selectinload
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -25,16 +24,12 @@ async def get_organizations_by_activity_id_from_db(db: AsyncSession, activity_id
     return list(result.scalars().all())
 
 
-async def get_organizations_by_activity_id_deep_from_db(db: AsyncSession, activity_id: int) -> List[Organization]:
-    """Запрос объектов организаций по коду вида деятельности с подкатегориями"""
-    # Получаем путь вида деятельности
-    async with (db.begin()):
-        stmt = select(Activity.path).filter(Activity.id == activity_id)
-        result = await db.execute(stmt)
-        path = result.scalar()
-        if path is None:
-            raise HTTPException(status_code=404, detail="Нет такого кода вида деятельности")
-
+async def get_organizations_by_activity_path_from_db(db: AsyncSession, path: str) -> List[Organization]:
+    """Запрос объектов организаций по пути вида деятельности.
+    Возвращает все организации с видом деятельности,
+    путь которого, начинается с переданного значения пути.
+    Таким образом находятся подкатегории видов деятельности.
+    """
     async with (db.begin()):
         stmt = (
             select(Organization)
