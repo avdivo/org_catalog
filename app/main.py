@@ -6,7 +6,7 @@ from app.api.v1.endpoints import organizations, activity, geo, buildings
 
 logging.basicConfig(level=logging.INFO)  # Лог файл не создается, логи выводятся в консоль
 
-app = FastAPI(title="Organizations Catalog")
+app = FastAPI(title="Каталог организаций")
 
 app.include_router(organizations.router, prefix="/api/v1")
 app.include_router(activity.router, prefix="/api/v1")
