@@ -1,16 +1,15 @@
 import os
-from fastapi import HTTPException, Request
+from fastapi.security import APIKeyHeader
+from fastapi import HTTPException, Depends, HTTPException
 
 from .config import Config
 
+# Определяем схему безопасности для заголовка X-API-KEY
+api_key_header = APIKeyHeader(name="X-API-KEY", auto_error=True)
 
-def verify_api_key(request: Request):
+
+def verify_api_key(api_key: str = Depends(api_key_header)):
     """Проверка API ключа"""
-    # Получаем ключ из заголовка запроса
-    api_key = request.headers.get("X-API-KEY")
-
-    # Проверяем, что ключ существует и он правильный
     if api_key != Config.API_KEY:
-        raise HTTPException(status_code=401, detail="Invalid API Key")
-
+        raise HTTPException(status_code=401, detail="Не верный ключ авторизации")
     return True

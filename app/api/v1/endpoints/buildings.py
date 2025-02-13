@@ -4,6 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from .docs import Docs
 from app.core.database import get_db
+from app.core.security import verify_api_key
 from app.schemas.schemas import OrganizationBase
 from app.services.organization import get_organizations_in_building
 
@@ -12,6 +13,7 @@ router = APIRouter(prefix="/buildings", tags=["Buildings"])
 
 @router.get("/{building_id}/organizations", **Docs.BUILDING, response_model=List[OrganizationBase])
 async def organizations_in_building(
+        auth: bool = Depends(verify_api_key),
         building_id: int = Path(..., description="Идентификатор здания"),
         db: AsyncSession = Depends(get_db)):
     """Список организаций в конкретном здании"""

@@ -4,6 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from .docs import Docs
 from app.core.database import get_db
+from app.core.security import verify_api_key
 from app.schemas.schemas import OrganizationBase
 from app.services.organization import get_organizations_in_radius, get_organizations_in_rectangle
 
@@ -12,6 +13,7 @@ router = APIRouter(prefix="/geo", tags=["Geolocation"])
 
 @router.get("/radius", **Docs.RADIUS, response_model=List[OrganizationBase])
 async def organizations_in_radius(
+        auth: bool = Depends(verify_api_key),
         lat: float = Path(..., description="Широта"),
         lon: float = Path(..., description="Долгота"),
         radius: float = Path(..., description="Радиус (метры)"),
@@ -22,6 +24,7 @@ async def organizations_in_radius(
 
 @router.get("/rectangle", **Docs.RECTANGLE, response_model=List[OrganizationBase])
 async def organizations_in_rectangle(
+        auth: bool = Depends(verify_api_key),
         top_left_lat: float = Path(..., description="Широта левой верхней точки"),
         top_left_lon: float = Path(..., description="Долгота левой верхней точки"),
         bottom_right_lat: float = Path(..., description="Широта правой нижней точки"),
