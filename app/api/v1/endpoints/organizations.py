@@ -1,5 +1,5 @@
 from typing import List
-from fastapi import APIRouter, Path, Depends
+from fastapi import APIRouter, Path, Query, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from .docs import Docs
@@ -23,7 +23,8 @@ async def get_organization(
 @router.get("/search/", **Docs.SEARCH_ORG, response_model=List[OrganizationBase])
 async def search_organizations(
         auth: bool = Depends(verify_api_key),
-        organization_name: str = Path(..., description="Название или его часть"),
+        organization_name: str = Query(..., description="Название или его часть"),
         db: AsyncSession = Depends(get_db)):
     """Поиск организаций по названию"""
+    print(organization_name)
     return await search_organization_by_name(db, organization_name)

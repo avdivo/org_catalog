@@ -5,6 +5,9 @@ from app.core.config import Config
 from app.api.v1.endpoints import organizations, activity, geo, buildings
 
 logging.basicConfig(level=logging.INFO)  # Лог файл не создается, логи выводятся в консоль
+# Добавляем FileHandler для записи логов в файл
+file_handler = logging.FileHandler("app.log", encoding="utf-8")
+logging.getLogger().addHandler(file_handler)
 
 app = FastAPI(title="Каталог организаций")
 

@@ -8,7 +8,7 @@ from .config import Config
 DATABASE_URL = (f"postgresql+asyncpg://{Config.DB_USER}:{Config.DB_PASSWORD}"
                 f"@{os.getenv('DB_HOST', 'localhost')}:5432/{Config.DB_NAME}")
 
-engine = create_async_engine(DATABASE_URL, echo=True)
+engine = create_async_engine(DATABASE_URL, echo=False)  # Логи выключены
 async_session = async_sessionmaker(engine, expire_on_commit=False)
 
 
