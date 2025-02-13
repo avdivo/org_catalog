@@ -25,6 +25,7 @@ services:
       - ${APP_PORTS}
     environment:
       DB_HOST: db
+    command: python -m app.main
 
 volumes:
   postgres_data:
