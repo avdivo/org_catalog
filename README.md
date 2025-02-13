@@ -112,16 +112,21 @@ APP_PORTS=80:8000
     ```bash
     cd org_catalog
     ```
+   > Не забыть поместить или создать в папке файл .env
 5. Запустить PostgtesSQL + PostGIS в контейнере
     ```bash
     docker compose up -d db 
     ```
-   Автоматически создастся БД и в ней активируется PostGIS
+   > Автоматически создастся БД и в ней активируется PostGIS
 
 6. Активировать виртуальное окружение
     ```bash
     source venv/bin/activate 
     ```
+   и установить зависимости
+   ```bash
+    pip install -r requirements.txt 
+   ```
 7. Выполнить миграции Alembic
     ```bash
     alembic upgrade head 
