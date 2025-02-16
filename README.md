@@ -150,9 +150,21 @@ APP_PORTS=80:8000
 
 ## Для запуска без контейнера
 После п.8 (если БД будет в контейнере) можно запустить проект:  
-- uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
-- uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload >> /home/$USER/uvicorn.log 2>&1
+```
+uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+```
+```
+uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload >> /home/$USER/uvicorn.log 2>&1
+```
+```
+python -m app.main
+```
 
+## Тестирование
+Для запуска основных тестов нужно запустить тестирование
+```
+pytests tests/
+```
 
 ## Миграции
 После создания миграции в ней закомментированы строки вызывающие ошибки
