@@ -164,11 +164,86 @@ python -m app.main
 ## Использование
 Для вызова эндпоинтов API требуется авторизация. Передавайте ключ X-API-KEY в заголовке запроса со значением YXZkaXZv.
 ```bash
+
 curl -X 'GET' \
   'https://328c22e35a29.vps.myjino.ru/api/v1/organizations/1' \
   -H 'accept: application/json' \
   -H 'X-API-KEY: YXZkaXZv'
-  ```
+```
+https://328c22e35a29.vps.myjino.ru/api/v1/organizations/1
+```
+Возвращает детальную информацию об организации по её уникальному идентификатору.
+```
+
+
+
+```bash
+curl -X 'GET' \
+  'https://328c22e35a29.vps.myjino.ru/api/v1/organizations/search/?organization_name=%D0%90%D0%B2%D1%82%D0%BE%D0%9C%D0%B8%D1%80' \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: YXZkaXZv'
+```
+https://328c22e35a29.vps.myjino.ru/api/v1/organizations/search/?organization_name=АвтоМир
+```
+Позволяет искать организации по частичному или полному названию.
+```
+
+```bash
+curl -X 'GET' \
+  'https://328c22e35a29.vps.myjino.ru/api/v1/activity/2/organizations' \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: YXZkaXZv'
+```
+https://328c22e35a29.vps.myjino.ru/api/v1/activity/2/organizations
+```
+Возвращает список организаций, относящихся к указанному виду деятельности.
+```
+
+```bash
+curl -X 'GET' \
+  'https://328c22e35a29.vps.myjino.ru/api/v1/activity/35/organizations/deep' \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: YXZkaXZv'
+```
+https://328c22e35a29.vps.myjino.ru/api/v1/activity/35/organizations/deep
+```
+Возвращает список организаций, относящихся к указанному виду деятельности, а также ко всем его вложенным категориям.
+```
+
+```bash
+curl -X 'GET' \
+  'https://328c22e35a29.vps.myjino.ru/api/v1/geo/radius?lat=55.819&lon=37.53&radius=10' \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: YXZkaXZv'
+```
+https://328c22e35a29.vps.myjino.ru/api/v1/geo/radius?lat=55.819&lon=37.53&radius=10
+```
+Возвращает список организаций, расположенных в пределах заданного радиуса относительно указанной точки на карте.
+```
+
+```bash
+curl -X 'GET' \
+  'https://328c22e35a29.vps.myjino.ru/api/v1/geo/rectangle?top_left_lat=55.81&top_left_lon=37.51&bottom_right_lat=55.9&bottom_right_lon=37.55' \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: YXZkaXZv'
+```
+https://328c22e35a29.vps.myjino.ru/api/v1/geo/rectangle?top_left_lat=55.81&top_left_lon=37.51&bottom_right_lat=55.9&bottom_right_lon=37.55
+```
+Возвращает список организаций, находящихся в пределах заданной прямоугольной области, определенной координатами верхнего левого и нижнего правого углов.
+```
+
+```bash
+curl -X 'GET' \
+  'https://328c22e35a29.vps.myjino.ru/api/v1/buildings/5/organizations' \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: YXZkaXZv'
+```
+https://328c22e35a29.vps.myjino.ru/api/v1/buildings/5/organizations
+```
+Возвращает список всех организаций, находящихся в указанном здании.
+```
+
+
 
 ## Тестирование
 Для запуска основных тестов нужно запустить тестирование
