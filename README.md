@@ -119,8 +119,9 @@ APP_PORTS=80:8000
     ```
    > Автоматически создастся БД и в ней активируется PostGIS
 
-6. Активировать виртуальное окружение
+6. Создать и активировать виртуальное окружение
     ```bash
+    python3 -m venv venv
     source venv/bin/activate 
     ```
    и установить зависимости
@@ -159,6 +160,18 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload >> /home/$USER/uvicorn.
 ```
 python -m app.main
 ```
+
+## Использование
+Для вызова эндпоинтов API требуется авторизация. Передавайте ключ X-API-KEY в заголовке запроса со значением YXZkaXZv.
+```
+X-API-KEY: YXZkaXZo
+```
+
+```bash
+curl -X GET "https://328c22e35a29.vps.myjino.ru/api/v1/organizations/1" \
+  -H "accept: application/json" \
+  -H "X-API-KEY: YXZkaXZo"
+  ```
 
 ## Тестирование
 Для запуска основных тестов нужно запустить тестирование
