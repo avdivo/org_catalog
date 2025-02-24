@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from app.core.config import Config
 from app.api.v1.endpoints import organizations, activity, geo, buildings
 
-app = FastAPI(title="Каталог организаций")
+app = FastAPI(title="Каталог организаций", docs_url="/docs", redoc_url="/redoc")
 
 app.include_router(organizations.router, prefix="/api/v1")
 app.include_router(activity.router, prefix="/api/v1")
