@@ -168,9 +168,10 @@ X-API-KEY: YXZkaXZo
 ```
 
 ```bash
-curl -X GET "https://328c22e35a29.vps.myjino.ru/api/v1/organizations/1" \
-  -H "accept: application/json" \
-  -H "X-API-KEY: YXZkaXZo"
+curl -X 'GET' \
+  'https://328c22e35a29.vps.myjino.ru/api/v1/organizations/1' \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: YXZkaXZv'
   ```
 
 ## Тестирование
